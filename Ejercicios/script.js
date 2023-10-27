@@ -776,9 +776,8 @@ function ejercicio28() {
     var jugadaMaquina = Math.floor(Math.random() * (4 - 1) + 1);
 
     if (jugadaJugador == jugadaMaquina) {
-      ;
       volver = confirm("Empate!! Quieres volver a jugar?");
-    
+
       if (volver == true) {
         jugar();
       } else {
@@ -789,32 +788,270 @@ function ejercicio28() {
       (jugadaJugador == 2 && jugadaMaquina == 3) ||
       (jugadaJugador == 3 && jugadaMaquina == 1)
     ) {
-  
       partidasPerdidas++;
       volver = confirm(" Gana la máquina jeje . ¿Quieres volver a jugar?");
-    
+
       if (volver == true) {
         jugar();
       } else {
         alert("Adióóós ");
       }
     } else {
-      
-
       partidasGanadas++;
-      
-        volver = confirm(" Bieeen! Has ganado! Quieres volver a jugar?");
-    
-        if (volver == true) {
-          jugar();
-        } else {
-          alert("Adióóós ");
-        }
+
+      volver = confirm(" Bieeen! Has ganado! Quieres volver a jugar?");
+
+      if (volver == true) {
+        jugar();
+      } else {
+        alert("Adióóós ");
       }
-    
+    }
   }
 
   jugar();
+}
+
+function ejercicio29() {
+  //Calcular la edad de una persona:
+  // Solicitar al usuario su fecha de nacimiento.
+  // Calcular la diferencia en años entre la fecha actual y la fecha de nacimiento.
+  // Mostrar la edad resultante.
+
+  var fechaNacimiento = new Date(prompt("Cual es tu fecha de nacimiento en mm-dd-aaaa "));
+  var fechaActual = new Date();
+
+  //document.write((fechaActual.getFullYear()- fechaNacimiento.getFullYear()))  Así sólo tiene en cuenta los años
+
+  var tiempoVivo = fechaActual - fechaNacimiento;
+
+  var edad = Math.floor(tiempoVivo / (1000 * 60 * 60 * 24 * 365));
+
+  document.write(edad + " años");
+}
+
+function ejercicio30() {
+  //Calcular el tiempo transcurrido desde una fecha específica:
+  // Solicitar al usuario una fecha en el pasado.
+  // Calcular la diferencia en días, horas, minutos y segundos entre la fecha actual y la fecha ingresada.
+  // Mostrar el tiempo transcurrido.
+
+  var fechaPasada = new Date(prompt("Dime una fecha pasada en mm-dd-aaaa hh:mm:ss"));
+  var fechaActual = new Date();
+  var tiempoPasado = fechaActual - fechaPasada;
+
+  var segundos = Math.floor(tiempoPasado / 1000) % 60;
+  var minutos = Math.floor(tiempoPasado / (1000 * 60)) % 60;
+  var horas = Math.floor(tiempoPasado / (1000 * 60 * 60)) % 24;
+  var dias = Math.floor(tiempoPasado / (1000 * 60 * 60 * 24));
+
+  document.write(
+    "Han pasado: " +
+      dias +
+      " días, " +
+      horas +
+      " horas, " +
+      minutos +
+      " minutos y" +
+      segundos +
+      " segundos. desde " +
+      fechaPasada
+  );
+}
+
+function ejercicio31() {
+  //   Obtener el día de la semana de una fecha específica:
+  // Solicitar al usuario una fecha.
+  // Obtener el día de la semana correspondiente a esa fecha.
+  // Mostrar el día de la semana.
+
+  var fechaPasada = new Date(prompt("Dime una fecha en mm-dd-aaaa"));
+
+  const dias = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+
+  var numeroDia = fechaPasada.getDay();
+  var nombreDia = dias[numeroDia];
+
+  document.write("Ese día es" + nombreDia + "! ");
+
+  document.write();
+}
+
+
+function ejercicio32 () {
+//   Calcular la fecha de vencimiento de un plazo:
+// Solicitar al usuario una fecha de inicio y una duración en días.
+// Calcular la fecha de vencimiento sumando la duración a la fecha de inicio.
+// Mostrar la fecha de vencimiento.
+
+var fechaInicio = new Date(prompt ("Cuál es la fecha de inicio:"));
+var plazoDías = prompt ("Cuál es el plazo en días:");
+var plazoMS= plazoDías *24*60*60*1000;
+var vencimientoMS = fechaInicio.getTime() + plazoMS;
+var vencimientoDate = new Date(vencimientoMS);
+
+document.write("El vencimiento es " + vencimientoDate);
 
 
 }
+
+
+function ejercicio33 () {
+
+//   Verificar si una fecha es un día festivo:
+// Solicitar al usuario una fecha.
+// Comprobar si esa fecha corresponde a un día festivo predefinido.
+// Mostrar si la fecha es un día festivo o no.
+
+
+  var festivos = [
+    new Date(2023, 0, 1),  // Año Nuevo
+    new Date(2023, 3, 14), // Viernes Santo
+    new Date(2023, 4, 1),  // Día del Trabajador
+    new Date(2023, 6, 25), // Santiago Apóstol
+    new Date(2023, 9, 12), // Fiesta Nacional de España
+    new Date(2023, 10, 1), // Día de Todos los Santos
+    new Date(2023, 11, 6), // Día de la Constitución Española
+    new Date(2023, 11, 25), // Navidad
+  ];
+
+
+var fechaUsuario = new Date(prompt("Ingresa una fecha (mm - dd - aaaa):"));
+
+var esFestivo = festivos.some(function (festivo) {
+  return festivo.getDate() === fechaUsuario.getDate() && festivo.getMonth() === fechaUsuario.getMonth()
+});
+
+if (esFestivo) {
+  document.write ("Bieeen es festivo!");
+} else {
+  document.write ("No es festivo =(");
+}
+}
+
+function ejercicio34() {   
+  // Calcular el número de días hábiles entre dos fechas:
+  // Solicitar al usuario una fecha de inicio y una fecha de fin.
+  // Calcular el número de días hábiles (excluyendo fines de semana) entre las dos fechas.
+  // Mostrar el número de días hábiles.
+var fechaInicio =new Date( prompt ("Dime una fecha incial en mm-dd- aaaa"));
+var fechaFinal = new Date (prompt ("Dime una fecha final en mm-dd- aaaa"));
+var diasHabiles = 0; 
+
+
+while ( fechaInicio <= fechaFinal) {
+  if (fechaInicio.getDate() !==6 && fechaFinal.getDate() !== 0){
+    diasHabiles++;
+  }
+  fechaInicio.setDate(fechaInicio.getDate()+ 1); // getDate() A numeric value equal to the day of the month. Sets the numeric day-of-the-month value of the Date object using local time.
+}
+
+document.write("Son   "  + diasHabiles + " días hábiles!")
+}
+
+
+function ejercicio35() { //PENDIENTE
+//   Obtener la fecha actual en diferentes formatos:
+// Obtener la fecha actual.
+// Mostrar la fecha en formatos diferentes, como "DD/MM/AAAA", "AAAA-MM-DD", "Día de la semana, DD de Mes de AAAA", etc.
+console.log ("Ejercicio sin hacer")
+
+}
+
+function ejercicio36 () { //PENDIENTE
+
+//   Generar una secuencia de fechas:
+// Solicitar al usuario una fecha de inicio y una fecha de fin.
+// Generar una secuencia de fechas diarias entre las dos fechas.
+// Mostrar todas las fechas generadas.
+
+console.log ("Ejercicio sin hacer")
+}
+
+
+
+// //EXPRESIONES REGULARES
+
+
+function ejercicio37 (){
+  
+// Validación de Correo Electrónico:
+// Solicitar al usuario su correo electrónico
+// Validar correo electrónico
+// Mostrar si el correo electrónico es válido o no
+
+var correo = prompt("Cuál es tu correo electrónico:");
+
+var correoRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+if (correoRegex.test(correo)) {
+  document.write("Gracias por darme un correo de verdad");
+} else {
+  document.write("Eso no es un correo");
+}
+
+}
+
+function ejercicio38 (){
+
+  // Validar número de teléfono
+// Solicitar al usuario su número de teléfono
+// Validar número de teléfono
+// Mostrar si el número de teléfono es válido o no
+
+var telf = prompt("¿Cuál es tu número de teléfono?");
+var telfRegex = /^[6-7][0-9]{8}$/;
+
+if (telfRegex.test(telf)) {
+  document.write("Gracias, ya te llamaremos");
+} else {
+  document.write("No es un teléfono válido");
+}
+
+}
+
+function ejercicio39() {
+
+// A partir del siguiente texto, debes encontrar con una función los números de teléfono y mostrarlos por pantalla
+// “Mi número de teléfono es 123-456-7890 y otro número es 555-555-5555.”
+// Obtener los números de teléfono del texto
+// Mostrar los números de teléfono por pantalla
+
+var texto = "Mi número de teléfono es 123-456-7890 y otro número es 555-555-5555.";
+
+var telefonoEstructura = /[0-9]{3}-[0-9]{3}-[0-9]{4}/g;
+
+var telefonosTexto = texto.match(telefonoEstructura);
+
+if (telefonosTexto) {
+  document.write("Números de teléfono encontrados en el texto:<br>");
+
+  for (var i = 0; i < telefonosTexto.length; i++) {
+    document.write(telefonosTexto[i] + "<br>");
+  }
+} else {
+  document.write("No se encontraron números de teléfono en el texto.");
+}
+}
+
+function ejercicio40(){
+
+// A partir del siguiente texto debes reemplazar la palabra “gato”
+// Los niños tenían un gato en casa.
+// El gato era un gato travieso.
+// El gato solía subirse a los árboles.
+// Los niños amaban al gato.
+// El gato, el gato, el gato, siempre el gato.
+// Crear una función que reemplace la palabra “gato” por la que se le mande por parámetro
+// Mostrar el texto modificado
+
+var texto = "Los niños tenían un gato en casa. El gato era un gato travieso. El gato solía subirse a los árboles. Los niños amaban al gato. El gato, el gato, el gato, siempre el gato.";
+var palabraReemplazar = prompt("Por qué palabra quieres reemplazar la palabra 'gato'? ");
+var regex = /gato/g;
+textoFinal = texto.replace( regex, palabraReemplazar);
+
+document.write(textoFinal);
+
+}
+
+
