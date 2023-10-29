@@ -1,0 +1,65 @@
+body {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-size: 150%;
+}
+
+#tarea { padding: 0.2%;
+border:none;
+box-shadow: 0 0 2px rgba(0, 0, 0, 0.703);
+border-radius: 2px;
+padding: 0.8%
+}
+
+#formulario button{
+  background-color: #52b356;
+  border: none;
+  color: #FFF;
+  padding:  0.8%  3%;
+  border-radius: 1px;
+  cursor :pointer;
+
+}
+
+h2, ul {
+  text-align: left;
+
+}
+
+
+
+li {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 2%;
+  
+}
+
+
+#lista-completadas li {
+  text-decoration: line-through ;
+  color: #41414165;
+
+}
+#lista-completadas .eliminar {
+  text-decoration: line-through ;
+  
+}
+
+
+
+
+
+
+button.eliminar {
+  background-color: #ff0000;
+  color: #fff;
+  padding: 0.5%;
+  border: none;
+  margin-left: 10px;
+}
+
+
