@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cambiar Imagen</title>
+  </head>
+
+  <body>
+    <img id="miImagen" src="img1.jpg" alt="Imagen original" />
+    <button onclick="cambiarImagen()">Cambiar Imagen</button>
+
+    <script>
+      function cambiarImagen() {
+        const img = document.getElementById("miImagen");
+        if (img.getAttribute("src") == "img1.jpg") {
+          img.setAttribute("src", "img2.jpg");
+        } else {
+          img.setAttribute("src", "img1.jpg");
+        }
+      }
+    </script>
+  </body>
+</html>

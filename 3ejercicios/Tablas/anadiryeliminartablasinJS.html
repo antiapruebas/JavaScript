@@ -1,59 +1,99 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Tabla Dinámica</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
 
-<head>
-  <meta charset="utf-8">
-  <title>Tabla Dinámica</title>
-  <style>
-    table {
-      border-collapse: collapse;
-    }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 8px;
+      }
+    </style>
+  </head>
 
-    th,
-    td {
-      border: 1px solid black;
-      padding: 8px;
-    }
+  <body>
+    <h1>Tabla Dinámica</h1>
 
-  </style>
-</head>
+    <table id="miTabla">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Edad</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tomás</td>
+          <td>Fuentes</td>
+          <td>24</td>
+          <td><button onclick="eliminarFila(this)">Eliminar</button></td>
+        </tr>
+      </tbody>
+    </table>
 
-<body>
-  <h1>Tabla Dinámica</h1>
+    <br />
 
-  <table id="miTabla">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Apellido</th>
-        <th>Edad</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Tomás</td>
-        <td>Fuentes</td>
-        <td>24</td>
-        <td><button onclick="eliminarFila(this)">Eliminar</button></td>
-      </tr>
-    </tbody>
-  </table>
+    <form id="formulario">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" />
+      <label for="apellido">Apellido:</label>
+      <input type="text" id="apellido" />
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" />
+      <button type="button" onclick="agregarFila()">Agregar Fila</button>
+    </form>
 
-  <br>
+    <script>
+      function agregarFila() {
+        const nombre = document.getElementById("nombre").value;
+        const apellido = document.getElementById("apellido").value;
+        const edad = document.getElementById("edad").value;
+        const tabla = document.getElementById("miTabla");
+        
+        
+        const botonEliminar = document.createElement("button");
+        botonEliminar.textContent = "Eliminar";
+        botonEliminar.onclick = function () {
+          eliminarFila(this);
+        };
 
-  <form id="formulario">
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre">
-    <label for="apellido">Apellido:</label>
-    <input type="text" id="apellido">
-    <label for="edad">Edad:</label>
-    <input type="number" id="edad">
-    <button type="button" onclick="agregarFila()">Agregar Fila</button>
-  </form>
+        if (nombre != "" && apellido != "") {
+          const columnaNombre = document.createElement("td");
+          const columnaApellido = document.createElement("td");
+          const columnaEdad = document.createElement("td");
+          const columnaBoton = document.createElement("td");
+          const nuevaFila = document.createElement("tr");
 
-  <script>
-  </script>
-</body>
+          columnaNombre.textContent = nombre;
+          columnaApellido.textContent = apellido;
+          columnaEdad.textContent = edad;
 
+
+          columnaBoton.appendChild(botonEliminar);
+          nuevaFila.appendChild(columnaNombre);
+          nuevaFila.appendChild(columnaApellido);
+          nuevaFila.appendChild(columnaEdad);
+          nuevaFila.appendChild(columnaBoton);
+
+          tabla.appendChild(nuevaFila);
+
+          document.getElementById("nombre").value = "";
+          document.getElementById("apellido").value = "";
+        }
+      }
+
+      function eliminarFila(botonEliminar) {
+        const fila = botonEliminar.parentNode.parentNode;
+        const tbody = fila.parentNode;
+        tbody.removeChild(fila);
+      }
+    </script>
+  </body>
 </html>

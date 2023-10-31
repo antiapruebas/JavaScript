@@ -5,10 +5,10 @@ const tareasPendientes = document.getElementById("lista-pendientes");
 
 // LISTENERS
 
-// Para el botón AGREGAR TAREA
-boton.addEventListener("click", agregarTarea);
+// // Para el botón AGREGAR TAREA
+// boton.addEventListener("click", agregarTarea);  esto no hace falta porque el botón en el html ya llama a la función. 
 
-// Al darle a Enter AGREGAR TAREA
+// Al darle a Enter AGREGAR TAREA (al pricipio el btón me creaba dos )
 tareaInput.addEventListener("keydown", (e) => {
   if (e.key == "Enter") {
     agregarTarea();
@@ -21,7 +21,6 @@ function agregarTarea() {
   if (tareaInput.value.trim() != "") {
     const nuevaTareaLi = document.createElement("li");
 
-    //por qué textNode me funciona pero inner text (inner text lo intenté poner sin variable, directamente en li) me lo pone desordenado?
     const nuevaTareaTexto = document.createTextNode(tareaInput.value);
 
     const checkbox = document.createElement("input");
@@ -43,10 +42,8 @@ function agregarTarea() {
     // Listener para el checkbox
     checkbox.addEventListener("change", function () {
       if (checkbox.checked) {
-        tareasPendientes.removeChild(nuevaTareaLi);
         tareasCompletadas.appendChild(nuevaTareaLi);
       } else {
-        tareasCompletadas.removeChild(nuevaTareaLi);
         tareasPendientes.appendChild(nuevaTareaLi);
       }
     });
@@ -61,4 +58,11 @@ function agregarTarea() {
       }
     });
   }
+
+  //Más fácil 
+  // botonEliminar.onclick = function() {
+  //   tareaInput.parentNode.removeChild(nuevaTareaLi);
+  // }
+
+
 }

@@ -27,6 +27,7 @@ padding: 0.8%
 h2, ul {
   text-align: left;
 
+
 }
 
 
@@ -34,7 +35,8 @@ h2, ul {
 li {
   list-style-type: none;
   margin-left: 0;
-  padding-left: 2%;
+  padding: 0.3% 2%;
+
   
 }
 
